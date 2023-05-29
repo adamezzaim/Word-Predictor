@@ -162,3 +162,9 @@ predictor/data/en_US.twitter.txt
 .idea/vcs.xml
 .idea/Word-Predictor.iml
 predictor/.DS_Store
+predictor/models/trigram_twitter_lp.txt
+predictor/models/trigram_news.txt
+predictor/models/trigram_news_lc.txt
+predictor/models/trigram_news_lp.txt
+predictor/models/trigram_twitter.txt
+predictor/models/trigram_twitter_lc.txt
