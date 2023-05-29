@@ -34,10 +34,10 @@ train_data, test_data = train_test_split(paragraphs, test_size=0.2, random_state
 # Write the training data to a file
 with open(args.train, 'w') as file:
     for paragraph in train_data:
-        file.write(paragraph + '\n')
+        file.write(paragraph + ' ')
 
 # Write the testing data to a file
 with open(args.test, 'w') as file:
     for paragraph in test_data:
-        file.write(paragraph + '\n')
+        file.write(paragraph + ' ')
 
