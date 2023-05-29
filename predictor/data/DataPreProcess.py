@@ -29,7 +29,7 @@ for i in range(len(paragraphs)):
     paragraphs[i] = re.sub(r'\s+', ' ', paragraphs[i]).strip()
 
 # Split the paragraphs into training and testing data
-train_data, test_data = train_test_split(paragraphs, test_size=0.2, random_state=42)
+train_data, test_data = train_test_split(paragraphs, test_size=0.1, random_state=42)
 
 # Write the training data to a file
 with open(args.train, 'w') as file:
@@ -39,5 +39,13 @@ with open(args.train, 'w') as file:
 # Write the testing data to a file
 with open(args.test, 'w') as file:
     for paragraph in test_data:
-        file.write(paragraph + ' ')
+        file.write(paragraph + '\n')
 
+# Shortened version
+with open("shortened_"+args.test, 'w') as file:
+    nb_lines = 0
+    for paragraph in test_data:
+        file.write(paragraph + '\n')
+        nb_lines += 1
+        if nb_lines >= 1000:
+            break
