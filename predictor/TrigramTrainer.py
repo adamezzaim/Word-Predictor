@@ -135,7 +135,7 @@ class TrigramTrainer(object):
         rows, bigrams, trigrams = [], [], []
 
         rows.append(
-            str(self.unique_words) + ' ' + str(self.total_words) + ' ' + str(self.laplace_smoothing))  # print metadata
+            str(self.unique_words) + ' ' + str(self.total_words) + ' ' + str(self.lower))  # print metadata
 
         for i, w1 in tqdm(self.i2w.items(), desc="Saving model"):
             c1 = self.unigram_count[i]

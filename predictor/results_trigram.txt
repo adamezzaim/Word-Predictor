@@ -1,0 +1,18 @@
+Proportion of saved keystrokes
+
+twitter training data - twitter test data - no smoothing - no lowercase: 24.33%
+twitter training data - twitter test data - laplace smoothing - no lowercase: 24.33%
+twitter training data - twitter test data - no smoothing - only lowercase: 26.62%
+
+twitter training data - news test data - no smoothing - no lowercase: 17.94%
+twitter training data - news test data - laplace smoothing - no lowercase: 17.94%
+twitter training data - news test data - no smoothing - only lowercase: 19.77%
+
+
+news training data - news test data - no smoothing - no lowercase: 23.31%
+news training data - news test data - laplace smoothing - no lowercase: 23.31%
+news training data - news test data - no smoothing - only lowercase: 28.00%
+
+news training data - twitter test data - no smoothing - no lowercase: 21.11%
+news training data - twitter test data - laplace smoothing - no lowercase: 21.11%
+news training data - twitter test data - no smoothing - only lowercase: 24.24%
