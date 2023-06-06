@@ -90,21 +90,20 @@ class TrigramTester:
         Gives the top 3 predictions from the model given, if available, the current word and the previous two
         """
         predictions = []
+        options = None
 
-        if w1 and w2:
-            prev_options = self.trigram_prob.get(self.w2i.get(w2, -1), None)
-            if prev_options:
-                options = prev_options.get(self.w2i.get(w1, -1), None)
-                if options:
-                    predictions = [self.i2w[i] for (i, _) in options if self.i2w[i][:len(w0)] == w0][:3]
-        elif w1 and not w2:
-            options = self.bigram_prob.get(self.w2i.get(w1, -1), None)
-            if options:
-                predictions = [self.i2w[i] for (i, _) in options if self.i2w[i][:len(w0)] == w0][:3]
-        else:
-            predictions = [self.i2w[i] for (i, _) in self.unigram_count if self.i2w[i][:len(w0)] == w0][:3]
+        if w1:
+            key = self.w2i.get(w1, -1)
+            options = self.bigram_prob.get(key, None) if not w2 else self.trigram_prob.get(self.w2i.get(w2, -1),
+                                                                                           {}).get(key, None)
+
+        options = options or self.unigram_count
+
+        if options:
+            predictions = [self.i2w[i] for (i, _) in options if self.i2w[i].startswith(w0)][:3]
 
         return predictions
+
 
     def interactive_word_predictor(self):
         print("Interactive word predictor session started...")
@@ -152,30 +151,33 @@ class TrigramTester:
             for line in f:
                 yield self.clean_line(line)
 
-    def check_predictions(self, w0="", w1=None, w2=None):
-        for p in self.predict(w0, w1, w2):
-            l0 = len(w0)
-            if p[:l0] == w0:
-                return len(p) - l0
+    def verify_prediction(self, prefix="", word1=None, word2=None):
+        """
+        Verify the top predictions from the model, return the length of the prediction - length of prefix if matched
+        """
+        for prediction in self.predict(prefix, word1, word2):
+            if prediction.startswith(prefix):
+                return len(prediction) - len(prefix)
         return 0
 
     def compute_keystrokes(self, test_filename):
-        saved = 0
-        total = 0
+        """
+        Calculate and display the proportion of saved keystrokes for a test file
+        """
+        saved_keystrokes, total_keystrokes = 0, 0
 
         for line in tqdm(self.text_gen(test_filename), desc="computing proportion of saved keystrokes", total=1000):
-            for i, w in enumerate(line):
-                w1 = line[i - 1] if i >= 1 else None
-                w2 = line[i - 2] if i >= 2 else None
+            for i, word in enumerate(line):
+                prev_word1 = line[i - 1] if i >= 1 else None
+                prev_word2 = line[i - 2] if i >= 2 else None
 
-                saved += self.check_predictions(w0=w, w1=w1, w2=w2)
-                total += len(w)
+                for j in range(len(word) + 1):
+                    prefix = word[:j]
+                    saved_keystrokes += self.verify_prediction(prefix, prev_word1, prev_word2)
+                    total_keystrokes += len(word)
 
-                for j in range(len(w)):
-                    saved += self.check_predictions(w0=w[:j], w1=w1, w2=w2)
-                    total += len(w)
-
-        print("proportion of saved keystrokes: %.6f" % (saved / total))
+        saved_proportion = saved_keystrokes / total_keystrokes if total_keystrokes else 0
+        print(f"Proportion of saved keystrokes: {saved_proportion:.6f}")
 
 
 def main():
