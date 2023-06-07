@@ -1,0 +1,12 @@
+twitter training data - twitter test data - no lowercase: 48.75%
+twitter training data - twitter test data - lowercase: 50.29%
+
+twitter training data - news test data - no lowercase: 42.68%
+twitter training data - news test data - lowercase: 45.20%
+
+news training data - news test data - no lowercase: 51.93%
+news training data - news test data - lowercase: 53.16%
+
+news training data - twitter test data - no lowercase: 42.60%
+news training data - twitter test data - lowercase: 44.46%
+
