@@ -42,7 +42,7 @@ run the following to train an lstm model:
 python RNN.py -ld -tr -lw -f "train_file" -e number
 ```
 where:
-`-f`: path to training file (default "./data/train.txt")
+`-f`: path to training file
 `-e`: number of epochs (default 5)
 `-tr`: train
 
