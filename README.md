@@ -29,7 +29,7 @@ python DataPreProcess.py -f data_file -tr train_file -t test_file
 
 run the following to manually test the prediction of a model:
 ```
-python main.py -ld -lw -news -wp
+python RNN.py -ld -lw -news -wp
 ```
 and you will be able to start typing words/sentences. Whenever you press enter, the program will output 3 predictions for the current word, or the next one if your input ends with a whitespace. Input exit if you wish to end the program.
 The flags in parentheses are optional and mean:
@@ -39,7 +39,7 @@ The flags in parentheses are optional and mean:
 
 run the following to train an lstm model:
 ```
-python main.py -ld -tr -lw -f "train_file" -e number
+python RNN.py -ld -tr -lw -f "train_file" -e number
 ```
 where:
 `-f`: path to training file (default "./data/train.txt")
@@ -48,7 +48,7 @@ where:
 
 run the following to evaluate an lstm model:
 ```
-python main.py -ld -lw -tf "test_file" -news -ev
+python RNN.py -ld -lw -tf "test_file" -news -ev
 ```
 where:
 `-tf`: path to test file
