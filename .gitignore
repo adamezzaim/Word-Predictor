@@ -168,3 +168,5 @@ predictor/models/trigram_news_lc.txt
 predictor/models/trigram_news_lp.txt
 predictor/models/trigram_twitter.txt
 predictor/models/trigram_twitter_lc.txt
+predictor/data/nn_news_train.txt
+predictor/data/nn_twitter_train.txt

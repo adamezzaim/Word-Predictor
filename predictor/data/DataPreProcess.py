@@ -36,6 +36,19 @@ with open(args.train, 'w') as file:
     for paragraph in train_data:
         file.write(paragraph + ' ')
 
+# Write the training data for NN
+with open("nn_"+args.train, 'w') as file:
+    for paragraph in train_data:
+        file.write(paragraph + '\n')
+
+
+with open("shortened_"+args.train, 'w') as file:
+    nb_lines = 0
+    for paragraph in train_data:
+        file.write(paragraph + '\n')
+        nb_lines += 1
+        if nb_lines >= 300000:
+            break
 # Write the testing data to a file
 with open(args.test, 'w') as file:
     for paragraph in test_data:

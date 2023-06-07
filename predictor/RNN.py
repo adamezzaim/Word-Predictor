@@ -43,7 +43,7 @@ class NLM:
                                     ['news_emb_low.pt', 'news_lstm_low.pt', 'news_linear_low.pt']]
             else:
                 self.model_files = [model_folder + f for f in
-                                    ['blog_emb_low.pt', 'blog_lstm_low.pt', 'blog_linear_low.pt']]
+                                    ['twitter_emb_low.pt', 'twitter_lstm_low.pt', 'twitter_linear_low.pt']]
         else:
             self.CHARS = ALL_CHARS
             if model_news:
@@ -51,7 +51,7 @@ class NLM:
                                     ['news_emb_all.pt', 'news_lstm_all.pt', 'news_linear_all.pt']]
             else:
                 self.model_files = [model_folder + f for f in
-                                    ['blog_emb_all.pt', 'blog_lstm_all.pt', 'blog_linear_all.pt']]
+                                    ['twitter_emb_all.pt', 'twitter_lstm_all.pt', 'twitter_linear_all.pt']]
 
         self.n_classes = len(self.CHARS)
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
